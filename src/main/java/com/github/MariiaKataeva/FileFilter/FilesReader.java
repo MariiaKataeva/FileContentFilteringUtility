@@ -18,6 +18,9 @@ public class FilesReader {
     }
 
     public void readData(){
+        if (this.settings.getInputFiles() == null){
+            return;
+        }
         for (String s : this.settings.getInputFiles()){
             this.readFile(s);
         }

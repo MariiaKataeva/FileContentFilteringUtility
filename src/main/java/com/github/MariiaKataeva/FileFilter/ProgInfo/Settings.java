@@ -20,19 +20,22 @@ public class Settings {
         this.floatsFilePath = "floats.txt";
         this.stringsFilePath = "strings.txt";
 
-        try{
-            this.argsParsing(args);
-        } catch (ParseException e){
-            System.out.println("Ошибка при парсинге аргументов командной строки." + e);
-            System.out.println("usage: ...");//todo: spravochka...
-        }
+        this.argsParsing(args);
     }
 
-    private void argsParsing(String[] commandLineArguments) throws ParseException {
+    private void argsParsing(String[] commandLineArguments) {
         Options posixOptions = defOptions();
 
         CommandLineParser cmdLinePosixParser = new PosixParser();
-        CommandLine commandLine = cmdLinePosixParser.parse(posixOptions, commandLineArguments);
+        CommandLine commandLine;
+        try {
+            commandLine = cmdLinePosixParser.parse(posixOptions, commandLineArguments);
+        } catch (ParseException e){
+            System.out.println("Ошибка при парсинге аргументов командной строки." + e);
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp("utility-name", posixOptions);
+            return;
+        }
 
 
         if (commandLine.hasOption('p')) {
