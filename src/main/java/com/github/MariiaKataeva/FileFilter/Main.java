@@ -1,12 +1,14 @@
 package com.github.MariiaKataeva.FileFilter;
 
+import com.github.MariiaKataeva.FileFilter.ProgInfo.Settings;
+
 public class Main {
     public static void main(String[] args) {
 
-        String[] fileNames = args;
-        //todo: сделать нормальную обработку аргументов - парсер
+        Settings settings = new Settings(args);
+
         LineHandler lineHandler = new LineHandler();
-        FilesReader filesReader = new FilesReader(fileNames, lineHandler);
+        FilesReader filesReader = new FilesReader(settings, lineHandler);
         filesReader.readData();
         lineHandler.printStatistics();
     }

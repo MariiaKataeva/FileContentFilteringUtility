@@ -21,14 +21,12 @@ public class IntegerWriter {
             this.bw.newLine();
             this.bw.flush();
             this.itemsCounter++;
-            System.out.println(this.itemsCounter);//---------------------------------------
         } catch (IOException e){
             System.err.println("Ошибка при записи в файл: " + e.getMessage());
         }
     }
 
     public int getCounter(){
-        System.out.println("!!!!!!!!!!!" + this.itemsCounter);//---------------------------------------
         return this.itemsCounter;
     }
 }
