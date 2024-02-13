@@ -1,5 +1,7 @@
 package com.github.MariiaKataeva.FileFilter.DataWriting;
 
+import com.github.MariiaKataeva.FileFilter.ProgInfo.*;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,9 +9,10 @@ import java.io.IOException;
 public class StringWriter {
     private int itemsCounter;
     private BufferedWriter bw;
-    public StringWriter(){
+    public StringWriter(Settings settings){
         try {
-            this.bw = new BufferedWriter(new FileWriter("outputStrings.txt"));
+            boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
+            this.bw = new BufferedWriter(new FileWriter(settings.getStringsFilePath(), isAddingMode));
         } catch (IOException e) {
             System.err.println("Ошибка при создании StringWriter: " + e.getMessage());
         }

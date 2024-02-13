@@ -1,5 +1,7 @@
 package com.github.MariiaKataeva.FileFilter.DataWriting;
 
+import com.github.MariiaKataeva.FileFilter.ProgInfo.*;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,9 +9,10 @@ import java.io.IOException;
 public class IntegerWriter {
     private int itemsCounter;
     private BufferedWriter bw;
-    public IntegerWriter(){
+    public IntegerWriter(Settings settings){
         try {
-            this.bw = new BufferedWriter(new FileWriter("outputIntegers.txt"));
+            boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
+            this.bw = new BufferedWriter(new FileWriter(settings.getIntegersFilePath(), isAddingMode));
         } catch (IOException e) {
             System.err.println("Ошибка при создании IntegerWriter: " + e.getMessage());
         }

@@ -1,16 +1,17 @@
 package com.github.MariiaKataeva.FileFilter;
 
 import com.github.MariiaKataeva.FileFilter.DataWriting.*;
+import com.github.MariiaKataeva.FileFilter.ProgInfo.Settings;
 
 public class LineHandler {
     private final StringWriter stringWriter;
     private final IntegerWriter integerWriter;
     private final FloatWriter floatWriter;
 
-    public LineHandler(){
-        this.floatWriter = new FloatWriter();
-        this.integerWriter = new IntegerWriter();
-        this.stringWriter = new StringWriter();
+    public LineHandler(Settings settings){
+        this.floatWriter = new FloatWriter(settings);
+        this.integerWriter = new IntegerWriter(settings);
+        this.stringWriter = new StringWriter(settings);
     }
 
     public void handle(String str){
@@ -30,7 +31,7 @@ public class LineHandler {
         }
     }
 
-    public void printStatistics(){
+    public void printStatistics(Settings settings){//todo: учесть, какая подробность нужна
         System.out.println("stringCounter = " + this.stringWriter.getCounter());
         System.out.println("floatCounter = " + this.floatWriter.getCounter());
         System.out.println("integerCounter = " + this.integerWriter.getCounter());
