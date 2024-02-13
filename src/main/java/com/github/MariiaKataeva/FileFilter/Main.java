@@ -5,8 +5,9 @@ public class Main {
 
         String[] fileNames = args;
         //todo: сделать нормальную обработку аргументов - парсер
-        LineHandler itemsHandler = new LineHandler();
-        FilesReader filesReader = new FilesReader(fileNames, itemsHandler);
+        LineHandler lineHandler = new LineHandler();
+        FilesReader filesReader = new FilesReader(fileNames, lineHandler);
         filesReader.readData();
+        lineHandler.printStatistics();
     }
 }

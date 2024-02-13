@@ -11,7 +11,7 @@ public class FilesReader {
 
 
     public FilesReader(String[] args, LineHandler handler){
-        this.handler = new LineHandler();
+        this.handler = handler;
         this.filePaths = args;
     }
 
