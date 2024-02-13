@@ -9,16 +9,17 @@ import java.io.IOException;
 
 public class FilesReader {
     private String[] filePaths;
+    private Settings settings;
     private LineHandler handler;
 
 
     public FilesReader(Settings settings, LineHandler handler){
         this.handler = handler;
-        this.filePaths = settings.getInputFiles();
+        this.settings = settings;
     }
 
     public void readData(){
-        for (String s : this.filePaths){
+        for (String s : this.settings.getInputFiles()){
             this.readFile(s);
         }
     }
@@ -28,7 +29,7 @@ public class FilesReader {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                this.handler.handle(line);
+                this.handler.handle(line, this.settings);
             }
         } catch (IOException e) {
             e.printStackTrace();

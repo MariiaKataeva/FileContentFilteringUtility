@@ -8,32 +8,32 @@ public class LineHandler {
     private final IntegerWriter integerWriter;
     private final FloatWriter floatWriter;
 
-    public LineHandler(Settings settings){
-        this.floatWriter = new FloatWriter(settings);
-        this.integerWriter = new IntegerWriter(settings);
-        this.stringWriter = new StringWriter(settings);
+    public LineHandler(){
+        this.floatWriter = new FloatWriter();
+        this.integerWriter = new IntegerWriter();
+        this.stringWriter = new StringWriter();
     }
 
-    public void handle(String str){
+    public void handle(String str, Settings settings){
         if (str.isEmpty()){
             return;
         }
         try {
-            Integer.parseInt(str);
-            this.integerWriter.add(str);
+            int val = Integer.parseInt(str);
+            this.integerWriter.add(val, settings);
         } catch (NumberFormatException e1) {
             try {
-                Float.parseFloat(str);
-                this.floatWriter.add(str);
+                float val = Float.parseFloat(str);
+                this.floatWriter.add(val, settings);
             } catch (NumberFormatException e2) {
-                this.stringWriter.add(str);
+                this.stringWriter.add(str, settings);
             }
         }
     }
 
-    public void printStatistics(Settings settings){//todo: учесть, какая подробность нужна
-        System.out.println("stringCounter = " + this.stringWriter.getCounter());
-        System.out.println("floatCounter = " + this.floatWriter.getCounter());
-        System.out.println("integerCounter = " + this.integerWriter.getCounter());
+    public void printStatistics(Settings settings){
+        this.stringWriter.printStatistics(settings.getStatisticsMode());
+        this.integerWriter.printStatistics(settings.getStatisticsMode());
+        this.floatWriter.printStatistics(settings.getStatisticsMode());
     }
 }

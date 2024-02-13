@@ -8,28 +8,57 @@ import java.io.IOException;
 
 public class StringWriter {
     private int itemsCounter;
+    private int minLength;
+    private int maxLength;
     private BufferedWriter bw;
-    public StringWriter(Settings settings){
-        try {
-            boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
-            this.bw = new BufferedWriter(new FileWriter(settings.getStringsFilePath(), isAddingMode));
-        } catch (IOException e) {
-            System.err.println("Ошибка при создании StringWriter: " + e.getMessage());
+
+    public void add(String val, Settings settings) {
+        if (this.itemsCounter == 0){
+            try {
+                boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
+                this.bw = new BufferedWriter(new FileWriter(settings.getStringsFilePath(), isAddingMode));
+            } catch (IOException e) {
+                System.err.println("Ошибка при создании StringWriter: " + e.getMessage());
+            }
         }
-    }
-    public void add(String str) {
         try {
-            this.bw.write(str);
+            this.bw.write(val);
             this.bw.newLine();
             this.bw.flush();
-            this.itemsCounter++;
+            this.statisticsUpdate(val);
         } catch (IOException e){
             System.err.println("Ошибка при записи в файл: " + e.getMessage());
         }
     }
 
-    public int getCounter(){
-        return this.itemsCounter;
+    private void statisticsUpdate(String val){
+        int strLength = val.length();
+        if (itemsCounter == 0){
+            this.minLength = strLength;
+            this.maxLength = strLength;
+        } else {
+            if (strLength > maxLength){
+                this.maxLength = strLength;
+            }
+            if (strLength < minLength){
+                this.minLength = strLength;
+            }
+        }
+        this.itemsCounter++;
     }
-    //todo: доп. статистика
+
+    public void printStatistics(StatisticsMode mode){
+        if (mode == StatisticsMode.FULL_STATISTICS){
+            System.out.println("FOR STRINGS:");
+            System.out.println("\tcounter = " + itemsCounter);
+            if (itemsCounter == 0){
+                return;
+            }
+            System.out.println("\tmax length = " + maxLength);
+            System.out.println("\tmin length = " + minLength);
+        } else if (mode == StatisticsMode.SHORT_STATISTICS){
+            System.out.println("FOR STRINGS:");
+            System.out.println("\tcounter = " + itemsCounter);
+        }
+    }
 }
