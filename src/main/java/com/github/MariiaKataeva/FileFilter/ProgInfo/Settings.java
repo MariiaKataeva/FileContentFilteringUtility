@@ -2,6 +2,9 @@ package com.github.MariiaKataeva.FileFilter.ProgInfo;
 
 import org.apache.commons.cli.*;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Settings {
     private StatisticsMode statisticsMode;
     private FileWritingMode fileWritingMode;
@@ -20,8 +23,8 @@ public class Settings {
         try{
             this.argsParsing(args);
         } catch (ParseException e){
-            System.out.println("Ошибка в аргументах командной строки." + e);
-            System.out.println("Тут бы справочку вывести...");//todo: spravochka...
+            System.out.println("Ошибка при парсинге аргументов командной строки." + e);
+            System.out.println("usage: ...");//todo: spravochka...
         }
     }
 
@@ -40,9 +43,10 @@ public class Settings {
         }
         if (commandLine.hasOption('o')) {
             String[] arguments = commandLine.getOptionValues('o');
-            this.integersFilePath = arguments[0] + "/" + this.integersFilePath;
-            this.floatsFilePath = arguments[0] + "/" + this.floatsFilePath;
-            this.stringsFilePath = arguments[0] + "/" + this.stringsFilePath;//todo: нормально формировать путь к файлу
+            Path directory = Paths.get(arguments[0]);
+            this.integersFilePath = (directory.resolve(integersFilePath)).toString();
+            this.floatsFilePath = (directory.resolve(floatsFilePath)).toString();
+            this.stringsFilePath = (directory.resolve(stringsFilePath)).toString();
         }
         if (commandLine.hasOption('a')){
             commandLine.getOptionValues('a');

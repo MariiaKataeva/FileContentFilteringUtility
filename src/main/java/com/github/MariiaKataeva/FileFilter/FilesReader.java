@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FilesReader {
-    private String[] filePaths;
     private Settings settings;
     private LineHandler handler;
 
@@ -26,6 +25,9 @@ public class FilesReader {
 
     private void readFile(String filePath){
         File file = new File(filePath);
+        if (!file.exists()){
+            return;
+        }
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
