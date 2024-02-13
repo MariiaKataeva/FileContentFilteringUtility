@@ -39,7 +39,7 @@ public class Settings {
             this.stringsFilePath = arguments[0] + this.stringsFilePath;
         }
         if (commandLine.hasOption('o')) {
-            String[] arguments = commandLine.getOptionValues('p');
+            String[] arguments = commandLine.getOptionValues('o');
             this.integersFilePath = arguments[0] + "/" + this.integersFilePath;
             this.floatsFilePath = arguments[0] + "/" + this.floatsFilePath;
             this.stringsFilePath = arguments[0] + "/" + this.stringsFilePath;//todo: нормально формировать путь к файлу
