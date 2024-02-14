@@ -19,6 +19,8 @@ public class DataWriter {
                 this.integerBW = new BufferedWriter(new FileWriter(settings.getIntegersFilePath(), isAddingMode));
             } catch (IOException e) {
                 System.err.println("Ошибка при создании IntegerWriter: " + e.getMessage());
+                System.out.println("Не записан элемент: " + val);
+                return;
             }
         }
         try {
@@ -28,6 +30,7 @@ public class DataWriter {
             stat.update(val);
         } catch (IOException e){
             System.err.println("Ошибка при записи в файл: " + e.getMessage());
+            System.out.println("Не записан элемент: " + val);
         }
     }
 
@@ -38,6 +41,8 @@ public class DataWriter {
                 this.floatBW = new BufferedWriter(new FileWriter(settings.getFloatsFilePath(), isAddingMode));
             } catch (IOException e) {
                 System.err.println("Ошибка при создании FloatsWriter: " + e.getMessage());
+                System.out.println("Не записан элемент: " + val);
+                return;
             }
         }
         try {
@@ -47,6 +52,7 @@ public class DataWriter {
             stat.update(val);
         } catch (IOException e){
             System.err.println("Ошибка при записи в файл: " + e.getMessage());
+            System.out.println("Не записан элемент: " + val);
         }
     }
 
@@ -57,6 +63,8 @@ public class DataWriter {
                 this.stringBW = new BufferedWriter(new FileWriter(settings.getStringsFilePath(), isAddingMode));
             } catch (IOException e) {
                 System.err.println("Ошибка при создании StringWriter: " + e.getMessage());
+                System.out.println("Не записан элемент: " + val);
+                return;
             }
         }
         try {
@@ -66,6 +74,7 @@ public class DataWriter {
             stat.update(val);
         } catch (IOException e){
             System.err.println("Ошибка при записи в файл: " + e.getMessage());
+            System.out.println("Не записан элемент: " + val);
         }
     }
 }
