@@ -1,11 +1,13 @@
 package com.github.mariiakataeva.filefilter.progInfo;
 
 import org.apache.commons.cli.*;
+import org.apache.log4j.Logger;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Settings {
+    private static final Logger logger = Logger.getLogger(Settings.class);
     private StatisticsMode statisticsMode;
     private FileWritingMode fileWritingMode;
     private String integersFilePath;
@@ -31,7 +33,8 @@ public class Settings {
         try {
             commandLine = cmdLinePosixParser.parse(posixOptions, commandLineArguments);
         } catch (ParseException e){
-            System.out.println("Ошибка при парсинге аргументов командной строки." + e);
+            logger.warn("Ошибка при парсинге аргументов командной строки.  " + e);
+            logger.info("Взяты настройки по умолчанию.");
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp("utility-name", posixOptions);
             return;

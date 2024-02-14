@@ -1,6 +1,7 @@
 package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FilesReader {
+    private static final Logger logger = Logger.getLogger(FilesReader.class);
     private final Settings settings;
     private final LineHandler handler;
     private final Statistics statistics;
@@ -33,13 +35,13 @@ public class FilesReader {
         try {
             file = new File(filePath);
         } catch (NullPointerException e) {
-            System.err.println("Ошибка: Передан нулевой путь к файлу." + e);
+            logger.error("Ошибка: Передан нулевой путь к файлу:" + filePath + ".  " + e);
             return;
         } catch (SecurityException e) {
-            System.err.println("Ошибка безопасности: Недостаточно прав доступа для создания файла." + e);
+            logger.error("Ошибка безопасности: Недостаточно прав доступа для создания файла " + filePath + ".  " + e);
             return;
         } catch (IllegalArgumentException e) {
-            System.err.println("Ошибка: Некорректный путь к файлу." + e);
+            logger.error("Ошибка: Некорректный путь к файлу: " + filePath + ".  " + e);
             return;
         }
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -48,7 +50,7 @@ public class FilesReader {
                 this.handler.handle(line, this.settings, this.statistics);
             }
         } catch (IOException e) {
-            System.err.println("Ошибка: Не удалось прочитать файл." + e);
+            logger.error("Ошибка: Не удалось прочитать файл " + filePath + ".  " + e);
         }
     }
 }

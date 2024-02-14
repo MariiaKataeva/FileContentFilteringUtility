@@ -1,8 +1,10 @@
 package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
+import org.apache.log4j.Logger;
 
 public class Main {
+    private static final Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
 
         Settings settings = new Settings(args);

@@ -2,12 +2,16 @@ package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.FileWritingMode;
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
+import org.apache.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
+
 public class DataWriter {
+    private static final Logger logger = Logger.getLogger(DataWriter.class);
     private BufferedWriter integerBW;
     private BufferedWriter floatBW;
     private BufferedWriter stringBW;
@@ -18,8 +22,7 @@ public class DataWriter {
                 boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
                 this.integerBW = new BufferedWriter(new FileWriter(settings.getIntegersFilePath(), isAddingMode));
             } catch (IOException e) {
-                System.err.println("Ошибка при создании IntegerWriter: " + e.getMessage());
-                System.out.println("Не записан элемент: " + val);
+                logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при создании IntegerWriter: " + e.getMessage());
                 return;
             }
         }
@@ -29,8 +32,7 @@ public class DataWriter {
             this.integerBW.flush();
             stat.update(val);
         } catch (IOException e){
-            System.err.println("Ошибка при записи в файл: " + e.getMessage());
-            System.out.println("Не записан элемент: " + val);
+            logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при записи в файл: " + e.getMessage());
         }
     }
 
@@ -40,8 +42,7 @@ public class DataWriter {
                 boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
                 this.floatBW = new BufferedWriter(new FileWriter(settings.getFloatsFilePath(), isAddingMode));
             } catch (IOException e) {
-                System.err.println("Ошибка при создании FloatsWriter: " + e.getMessage());
-                System.out.println("Не записан элемент: " + val);
+                logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при создании FloatsWriter: " + e.getMessage());
                 return;
             }
         }
@@ -51,8 +52,7 @@ public class DataWriter {
             this.floatBW.flush();
             stat.update(val);
         } catch (IOException e){
-            System.err.println("Ошибка при записи в файл: " + e.getMessage());
-            System.out.println("Не записан элемент: " + val);
+            logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при записи в файл: " + e.getMessage());
         }
     }
 
@@ -62,8 +62,7 @@ public class DataWriter {
                 boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
                 this.stringBW = new BufferedWriter(new FileWriter(settings.getStringsFilePath(), isAddingMode));
             } catch (IOException e) {
-                System.err.println("Ошибка при создании StringWriter: " + e.getMessage());
-                System.out.println("Не записан элемент: " + val);
+                logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при создании StringWriter: " + e.getMessage());
                 return;
             }
         }
@@ -73,8 +72,7 @@ public class DataWriter {
             this.stringBW.flush();
             stat.update(val);
         } catch (IOException e){
-            System.err.println("Ошибка при записи в файл: " + e.getMessage());
-            System.out.println("Не записан элемент: " + val);
+            logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при записи в файл: " + e.getMessage());
         }
     }
 }
