@@ -8,8 +8,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
-
 public class DataWriter {
     private static final Logger logger = Logger.getLogger(DataWriter.class);
     private BufferedWriter integerBW;
