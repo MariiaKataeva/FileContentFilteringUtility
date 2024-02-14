@@ -19,6 +19,8 @@ public class FilesReader {
         this.handler = handler;
         this.settings = settings;
         this.statistics = stat;
+
+        logger.info("Создан объект класса FilesReader.");
     }
 
     public void readData(){
@@ -48,6 +50,7 @@ public class FilesReader {
             String line;
             while ((line = br.readLine()) != null) {
                 this.handler.handle(line, this.settings, this.statistics);
+                logger.debug("Обработана строка из входного файла " + filePath + " : " + line);
             }
         } catch (IOException e) {
             logger.error("Ошибка: Не удалось прочитать файл " + filePath + ".  " + e);

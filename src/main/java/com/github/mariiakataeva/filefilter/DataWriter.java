@@ -33,7 +33,10 @@ public class DataWriter {
             stat.update(val);
         } catch (IOException e){
             logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при записи в файл: " + e.getMessage());
+            return;
         }
+
+        logger.debug("Записан элемент integer: " + val);
     }
 
     public void add(float val, Settings settings, Statistics stat) {
@@ -53,7 +56,10 @@ public class DataWriter {
             stat.update(val);
         } catch (IOException e){
             logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при записи в файл: " + e.getMessage());
+            return;
         }
+
+        logger.debug("Записан элемент float: " + val);
     }
 
     public void add(String val, Settings settings, Statistics stat) {
@@ -73,6 +79,9 @@ public class DataWriter {
             stat.update(val);
         } catch (IOException e){
             logger.error("Частичная потеря данных: не записан элемент " + val + ".  Причина - ошибка при записи в файл: " + e.getMessage());
+            return;
         }
+
+        logger.debug("Записан элемент String: " + val);
     }
 }

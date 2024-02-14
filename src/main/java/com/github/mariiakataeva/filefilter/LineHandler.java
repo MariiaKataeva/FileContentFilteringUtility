@@ -9,6 +9,8 @@ public class LineHandler {
 
     public LineHandler(){
         this.dataWriter = new DataWriter();
+
+        logger.info("Создан объект класса LineHandler.");
     }
 
     public void handle(String str, Settings settings, Statistics stat){

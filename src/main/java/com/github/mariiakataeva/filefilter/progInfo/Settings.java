@@ -22,6 +22,9 @@ public class Settings {
         this.floatsFilePath = "floats.txt";
         this.stringsFilePath = "strings.txt";
 
+        logger.info("Создан объект класса Settings.");
+        logger.debug("Значения настроек выставлены по умолчанию.");
+
         this.argsParsing(args);
     }
 
@@ -46,6 +49,8 @@ public class Settings {
             this.integersFilePath = arguments[0] + this.integersFilePath;
             this.floatsFilePath = arguments[0] + this.floatsFilePath;
             this.stringsFilePath = arguments[0] + this.stringsFilePath;
+
+            logger.debug("В настройки добавлеен префикс для output файлов: " + arguments[0]);
         }
         if (commandLine.hasOption('o')) {
             String[] arguments = commandLine.getOptionValues('o');
@@ -53,21 +58,30 @@ public class Settings {
             this.integersFilePath = (directory.resolve(integersFilePath)).toString();
             this.floatsFilePath = (directory.resolve(floatsFilePath)).toString();
             this.stringsFilePath = (directory.resolve(stringsFilePath)).toString();
+
+            logger.debug("В настройки добавлеен путь для output файлов: " + arguments[0]);
         }
         if (commandLine.hasOption('a')){
             commandLine.getOptionValues('a');
             this.fileWritingMode = FileWritingMode.ADD;
+
+            logger.debug("В настройках включен режим дозаписи для output файлов.");
         }
         if (commandLine.hasOption('s')){
             commandLine.getOptionValues('s');
             this.statisticsMode = StatisticsMode.SHORT_STATISTICS;
+
+            logger.debug("Режим вывода статистики переключен на краткую статистику.");
         }
         if (commandLine.hasOption('f')){
             commandLine.getOptionValues('f');
             this.statisticsMode = StatisticsMode.FULL_STATISTICS;
+            logger.debug("Режим вывода статистики переключен на полную статистику.");
         }
 
         this.inputFiles = commandLine.getArgs();
+
+        logger.debug("В настройки добавлены имена входных файлов.");
     }
 
 

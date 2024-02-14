@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class);
     public static void main(String[] args) {
+        logger.trace("Программа запущена.");
 
         Settings settings = new Settings(args);
         Statistics statistics = new Statistics();
@@ -15,5 +16,7 @@ public class Main {
         filesReader.readData();
 
         statistics.printStatistics(settings.getStatisticsMode());
+
+        logger.trace("Программа завершает работу.");
     }
 }

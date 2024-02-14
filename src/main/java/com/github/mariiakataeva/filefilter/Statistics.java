@@ -33,6 +33,8 @@ public class Statistics {
         this.sumIntVal += val;
         this.integersCounter++;
         this.avgIntVal = (float)sumIntVal / (float)integersCounter;
+
+        logger.debug("В статистике учтен элемент " + val);
     }
     public void update(float val){
         if (floatsCounter == 0){
@@ -49,6 +51,8 @@ public class Statistics {
         this.sumFloatVal += val;
         this.floatsCounter++;
         this.avgFloatVal = sumFloatVal / floatsCounter;
+
+        logger.debug("В статистике учтен элемент " + val);
     }
     public void update(String val){
         int strLength = val.length();
@@ -64,6 +68,8 @@ public class Statistics {
             }
         }
         this.stringsCounter++;
+
+        logger.debug("В статистике учтен элемент " + val);
     }
 
     public void printStatistics(StatisticsMode mode){
