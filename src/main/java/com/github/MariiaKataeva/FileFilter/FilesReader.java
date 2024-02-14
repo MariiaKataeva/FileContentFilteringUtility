@@ -29,6 +29,7 @@ public class FilesReader {
     private void readFile(String filePath){
         File file = new File(filePath);
         if (!file.exists()){
+            System.out.println("No such file: " + filePath);
             return;
         }
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
