@@ -1,6 +1,6 @@
-package com.github.MariiaKataeva.FileFilter.DataWriting;
+package com.github.MariiaKataeva.filefilter.datawriting;
 
-import com.github.MariiaKataeva.FileFilter.ProgInfo.*;
+import com.github.MariiaKataeva.filefilter.progInfo.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

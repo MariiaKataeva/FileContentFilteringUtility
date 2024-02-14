@@ -1,4 +1,4 @@
-package com.github.MariiaKataeva.FileFilter.ProgInfo;
+package com.github.MariiaKataeva.filefilter.progInfo;
 
 import org.apache.commons.cli.*;
 

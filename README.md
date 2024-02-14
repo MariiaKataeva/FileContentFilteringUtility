@@ -10,4 +10,4 @@ to run: (in the terminal)
 
 
 
-java -cp ~/.m2/repository/commons-cli/commons-cli/1.4/commons-cli-1.4.jar:~/IdeaProjects/FileContentFilteringUtility/target/FileContentFilteringUtility-1.0.0.jar com.github.MariiaKataeva.FileFilter.Main
+java -cp ~/.m2/repository/commons-cli/commons-cli/1.4/commons-cli-1.4.jar:~/IdeaProjects/FileContentFilteringUtility/target/FileContentFilteringUtility-1.0.0.jar com.github.MariiaKataeva.filefilter.Main

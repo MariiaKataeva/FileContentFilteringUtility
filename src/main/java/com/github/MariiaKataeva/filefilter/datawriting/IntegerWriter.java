@@ -1,29 +1,30 @@
-package com.github.MariiaKataeva.FileFilter.DataWriting;
+package com.github.MariiaKataeva.filefilter.datawriting;
 
-import com.github.MariiaKataeva.FileFilter.ProgInfo.*;
+import com.github.MariiaKataeva.filefilter.progInfo.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class FloatWriter {
+public class IntegerWriter {
     private int itemsCounter;
-    private float minVal;
-    private float maxVal;
-    private float sumVal;
-    private float avgVal;
+    private int minVal;
+    private int maxVal;
+    private int sumVal;
+    private int avgVal;
     private BufferedWriter bw;
-    public void add(float val, Settings settings) {
+
+    public void add(int val, Settings settings) {
         if (this.itemsCounter == 0){
             try {
                 boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
-                this.bw = new BufferedWriter(new FileWriter(settings.getFloatsFilePath(), isAddingMode));
+                this.bw = new BufferedWriter(new FileWriter(settings.getIntegersFilePath(), isAddingMode));
             } catch (IOException e) {
-                System.err.println("Ошибка при создании FloatsWriter: " + e.getMessage());
+                System.err.println("Ошибка при создании IntegerWriter: " + e.getMessage());
             }
         }
         try {
-            this.bw.write(Float.toString(val));
+            this.bw.write(Integer.toString(val));
             this.bw.newLine();
             this.bw.flush();
             this.statisticsUpdate(val);
@@ -32,7 +33,7 @@ public class FloatWriter {
         }
     }
 
-    private void statisticsUpdate(float val){
+    private void statisticsUpdate(int val){
         if (itemsCounter == 0){
             this.maxVal = val;
             this.minVal = val;

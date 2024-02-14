@@ -33,7 +33,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.MariiaKataeva.FileFilter.Main</mainClass>
+                            <mainClass>com.github.MariiaKataeva.filefilter.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

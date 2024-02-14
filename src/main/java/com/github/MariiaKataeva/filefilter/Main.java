@@ -1,6 +1,6 @@
-package com.github.MariiaKataeva.FileFilter;
+package com.github.MariiaKataeva.filefilter;
 
-import com.github.MariiaKataeva.FileFilter.ProgInfo.Settings;
+import com.github.MariiaKataeva.filefilter.progInfo.Settings;
 
 public class Main {
     public static void main(String[] args) {
