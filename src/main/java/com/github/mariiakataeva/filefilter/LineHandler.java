@@ -1,6 +1,6 @@
-package com.github.MariiaKataeva.filefilter;
+package com.github.mariiakataeva.filefilter;
 
-import com.github.MariiaKataeva.filefilter.progInfo.Settings;
+import com.github.mariiakataeva.filefilter.progInfo.Settings;
 
 public class LineHandler {
     private final DataWriter dataWriter;

@@ -1,6 +1,6 @@
-package com.github.MariiaKataeva.filefilter;
+package com.github.mariiakataeva.filefilter;
 
-import com.github.MariiaKataeva.filefilter.progInfo.StatisticsMode;
+import com.github.mariiakataeva.filefilter.progInfo.StatisticsMode;
 
 public class Statistics {
     private int stringsCounter;

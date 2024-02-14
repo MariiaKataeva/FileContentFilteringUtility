@@ -1,4 +1,4 @@
-package com.github.MariiaKataeva.filefilter.progInfo;
+package com.github.mariiakataeva.filefilter.progInfo;
 
 public enum StatisticsMode {
     SHORT_STATISTICS,
