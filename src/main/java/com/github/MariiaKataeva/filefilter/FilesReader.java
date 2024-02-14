@@ -10,11 +10,13 @@ import java.io.IOException;
 public class FilesReader {
     private Settings settings;
     private LineHandler handler;
+    private Statistics statistics;
 
 
-    public FilesReader(Settings settings, LineHandler handler){
+    public FilesReader(Settings settings, LineHandler handler, Statistics stat){
         this.handler = handler;
         this.settings = settings;
+        this.statistics = stat;
     }
 
     public void readData(){
@@ -35,7 +37,7 @@ public class FilesReader {
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
-                this.handler.handle(line, this.settings);
+                this.handler.handle(line, this.settings, this.statistics);
             }
         } catch (IOException e) {
             e.printStackTrace();

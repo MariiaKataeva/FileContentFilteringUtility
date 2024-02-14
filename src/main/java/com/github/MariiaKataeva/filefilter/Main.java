@@ -6,10 +6,13 @@ public class Main {
     public static void main(String[] args) {
 
         Settings settings = new Settings(args);
+        Statistics statistics = new Statistics();
 
         LineHandler lineHandler = new LineHandler();
-        FilesReader filesReader = new FilesReader(settings, lineHandler);
+        FilesReader filesReader = new FilesReader(settings, lineHandler, statistics);
         filesReader.readData();
-        lineHandler.printStatistics(settings);
+
+        statistics.printStatistics(settings.getStatisticsMode());
+//        lineHandler.printStatistics(settings);
     }
 }
