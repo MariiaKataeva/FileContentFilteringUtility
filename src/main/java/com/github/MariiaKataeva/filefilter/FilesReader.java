@@ -6,12 +6,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 
 public class FilesReader {
-    private Settings settings;
-    private LineHandler handler;
-    private Statistics statistics;
+    private final Settings settings;
+    private final LineHandler handler;
+    private final Statistics statistics;
 
 
     public FilesReader(Settings settings, LineHandler handler, Statistics stat){
@@ -49,7 +48,7 @@ public class FilesReader {
                 this.handler.handle(line, this.settings, this.statistics);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Ошибка: Не удалось прочитать файл." + e);
         }
     }
 }
