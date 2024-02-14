@@ -13,6 +13,5 @@ public class Main {
         filesReader.readData();
 
         statistics.printStatistics(settings.getStatisticsMode());
-//        lineHandler.printStatistics(settings);
     }
 }
