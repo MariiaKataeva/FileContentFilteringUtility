@@ -1,13 +1,14 @@
 package com.github.mariiakataeva.filefilter.progInfo;
 
 import org.apache.commons.cli.*;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Settings {
-    private static final Logger logger = Logger.getLogger(Settings.class);
+    private static final Logger logger = LogManager.getLogger(Settings.class);
     private StatisticsMode statisticsMode;
     private FileWritingMode fileWritingMode;
     private String integersFilePath;

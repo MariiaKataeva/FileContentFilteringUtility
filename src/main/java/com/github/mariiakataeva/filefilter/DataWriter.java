@@ -2,14 +2,16 @@ package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.FileWritingMode;
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
-import org.apache.log4j.Logger;
+
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class DataWriter {
-    private static final Logger logger = Logger.getLogger(DataWriter.class);
+    private static final Logger logger = LogManager.getLogger(DataWriter.class);
     private BufferedWriter integerBW;
     private BufferedWriter floatBW;
     private BufferedWriter stringBW;

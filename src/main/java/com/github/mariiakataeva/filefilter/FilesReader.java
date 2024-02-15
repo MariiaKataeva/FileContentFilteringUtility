@@ -1,7 +1,9 @@
 package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
-import org.apache.log4j.Logger;
+
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class FilesReader {
-    private static final Logger logger = Logger.getLogger(FilesReader.class);
+    private static final Logger logger = LogManager.getLogger(FilesReader.class);
     private final Settings settings;
     private final LineHandler handler;
     private final Statistics statistics;

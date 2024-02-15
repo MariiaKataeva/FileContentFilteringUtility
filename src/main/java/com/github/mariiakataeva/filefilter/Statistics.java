@@ -1,10 +1,12 @@
 package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.StatisticsMode;
-import org.apache.log4j.Logger;
+
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class Statistics {
-    private static final Logger logger = Logger.getLogger(Statistics.class);
+    private static final Logger logger = LogManager.getLogger(Statistics.class);
     private int stringsCounter;
     private int minStrLength;
     private int maxStrLength;

@@ -1,10 +1,12 @@
 package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
-import org.apache.log4j.Logger;
+
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 public class Main {
-    private static final Logger logger = Logger.getLogger(Main.class);
+    private static final Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
         logger.trace("Программа запущена.");
 
