@@ -8,9 +8,10 @@
 
 
 ## Инструкция для запуска программы
-из коневой директории проекта выполнить команды:
--mvn clean install
--java -jar target/file-content-filtering-utility-1.0.0.jar [здесь указывать аргуметы]
+из коневой директории проекта выполнить команды:  
+
+mvn clean install  
+java -jar target/file-content-filtering-utility-1.0.0.jar [здесь указывать аргуметы]
 
 
 ## Особенности реализации
