@@ -2,8 +2,10 @@ package com.github.mariiakataeva.filefilter;
 
 import com.github.mariiakataeva.filefilter.progInfo.StatisticsMode;
 
-//import org.apache.log4j.Logger;
 import org.apache.logging.log4j.*;
+import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Statistics {
     private static final Logger logger = LogManager.getLogger(Statistics.class);
@@ -11,48 +13,52 @@ public class Statistics {
     private int minStrLength;
     private int maxStrLength;
     private int integersCounter;
-    private int minIntVal;
-    private int maxIntVal;
-    private int sumIntVal;
-    private float avgIntVal;
+    private BigInteger minIntVal;
+    private BigInteger maxIntVal;
+    private BigInteger sumIntVal;
+    private BigDecimal avgIntVal;
     private int floatsCounter;
-    private float minFloatVal;
-    private float maxFloatVal;
-    private float sumFloatVal;
-    private float avgFloatVal;
-    public void update(int val){
+    private BigDecimal minFloatVal;
+    private BigDecimal maxFloatVal;
+    private BigDecimal sumFloatVal;
+    private BigDecimal avgFloatVal;
+    public Statistics(){
+        this.sumIntVal = new BigInteger("0");
+        this.sumFloatVal = new BigDecimal("0.0");
+    }
+    public void update(BigInteger val){
         if (integersCounter == 0){
             this.maxIntVal = val;
             this.minIntVal = val;
         } else {
-            if (val > maxIntVal){
+            if (val.compareTo(maxIntVal) > 0){
                 this.maxIntVal = val;
             }
-            if (val < minIntVal){
+            if (val.compareTo(minIntVal) < 0){
                 this.minIntVal = val;
             }
         }
-        this.sumIntVal += val;
+        this.sumIntVal = sumIntVal.add(val);
         this.integersCounter++;
-        this.avgIntVal = (float)sumIntVal / (float)integersCounter;
+        this.avgIntVal = new BigDecimal(sumIntVal).divide(new BigDecimal(integersCounter), RoundingMode.HALF_UP);
 
         logger.debug("В статистике учтен элемент " + val);
     }
-    public void update(float val){
+    public void update(BigDecimal val){
         if (floatsCounter == 0){
             this.maxFloatVal = val;
             this.minFloatVal = val;
         } else {
-            if (val > maxFloatVal){
+            if (val.compareTo(maxFloatVal) > 0){
                 this.maxFloatVal = val;
             }
-            if (val < minFloatVal){
+            if (val.compareTo(minFloatVal) < 0){
                 this.minFloatVal = val;
             }
         }
-        this.sumFloatVal += val;
+        this.sumFloatVal = sumFloatVal.add(val);
         this.floatsCounter++;
-        this.avgFloatVal = sumFloatVal / floatsCounter;
+        this.avgFloatVal = sumFloatVal.divide(new BigDecimal(floatsCounter), RoundingMode.HALF_UP);
 
         logger.debug("В статистике учтен элемент " + val);
     }

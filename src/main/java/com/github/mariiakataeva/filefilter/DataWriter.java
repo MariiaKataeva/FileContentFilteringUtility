@@ -3,8 +3,9 @@ package com.github.mariiakataeva.filefilter;
 import com.github.mariiakataeva.filefilter.progInfo.FileWritingMode;
 import com.github.mariiakataeva.filefilter.progInfo.Settings;
 
-//import org.apache.log4j.Logger;
 import org.apache.logging.log4j.*;
+import java.math.BigInteger;
+import java.math.BigDecimal;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -16,7 +17,7 @@ public class DataWriter {
     private BufferedWriter floatBW;
     private BufferedWriter stringBW;
 
-    public void add(int val, Settings settings, Statistics stat) {
+    public void add(BigInteger val, Settings settings, Statistics stat) {
         if (stat.getIntegersCounter() == 0){
             try {
                 boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
@@ -27,7 +28,7 @@ public class DataWriter {
             }
         }
         try {
-            this.integerBW.write(Integer.toString(val));
+            this.integerBW.write(val.toString());
             this.integerBW.newLine();
             this.integerBW.flush();
             stat.update(val);
@@ -39,7 +40,7 @@ public class DataWriter {
         logger.debug("Записан элемент integer: " + val);
     }
 
-    public void add(float val, Settings settings, Statistics stat) {
+    public void add(BigDecimal val, Settings settings, Statistics stat) {
         if (stat.getFloatsCounter() == 0){
             try {
                 boolean isAddingMode = settings.getFileWritingMode() == FileWritingMode.ADD;
@@ -50,7 +51,7 @@ public class DataWriter {
             }
         }
         try {
-            this.floatBW.write(Float.toString(val));
+            this.floatBW.write(val.toString());
             this.floatBW.newLine();
             this.floatBW.flush();
             stat.update(val);
