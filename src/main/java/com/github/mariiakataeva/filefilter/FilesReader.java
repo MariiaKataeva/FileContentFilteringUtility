@@ -55,7 +55,7 @@ public class FilesReader {
                 logger.debug("Обработана строка из входного файла " + filePath + " : " + line);
             }
         } catch (IOException e) {
-            logger.error("Ошибка: Не удалось прочитать файл " + filePath + ".  " + e);
+            logger.warn("Ошибка: Не удалось прочитать файл " + filePath + ".  " + e);
         }
     }
 }
