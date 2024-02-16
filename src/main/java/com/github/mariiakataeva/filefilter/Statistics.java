@@ -81,6 +81,10 @@ public class Statistics {
     }
 
     public void printStatistics(StatisticsMode mode){
+        if (mode == StatisticsMode.NO_STATISTICS){
+            return;
+        }
+
         if (mode == StatisticsMode.SHORT_STATISTICS || stringsCounter == 0){
             System.out.println("FOR STRINGS:");
             System.out.println("\tcounter = " + stringsCounter);

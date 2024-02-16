@@ -22,6 +22,7 @@ public class Settings {
         this.integersFilePath = "integers.txt";
         this.floatsFilePath = "floats.txt";
         this.stringsFilePath = "strings.txt";
+        this.inputFiles = new String[0];
 
         logger.info("Создан объект класса Settings.");
         logger.debug("Значения настроек выставлены по умолчанию.");
@@ -37,8 +38,7 @@ public class Settings {
         try {
             commandLine = cmdLinePosixParser.parse(posixOptions, commandLineArguments);
         } catch (ParseException e){
-            logger.warn("Ошибка при парсинге аргументов командной строки.  " + e);
-            logger.info("Взяты настройки по умолчанию.");
+            logger.error("Ошибка при парсинге аргументов командной строки.  " + e);
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp("utility-name", posixOptions);
             return;
